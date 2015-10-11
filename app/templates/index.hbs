@@ -1,5 +1,28 @@
-Credentials:
 
-{{#each-in credentials as |value key|}}
-    {{key}}: {{ value }}
+<div class="row">
+    <div class="col-md-6">
+        <a>Decode password</a>
+    </div>
+</div>
+
+{{#each-in sections as |section_name subsection|}}
+    <section id="{{section_name}}" class="section-credentials">
+        <h2 class="section-title">{{ section_name }}</h2>
+    {{#each-in subsection as |subsection_name credentials|}}
+        <div>
+            <h3 class="subsection-title">{{subsection_name}}</h3>
+            <ul class="credentials-list">
+            {{#each-in credentials as |label credential|}}
+                <li class="credential row">
+                    <div class="col-md-6">
+                        {{ label }} |
+                        {{ credential }}
+                    </div>
+                    {{zero-clipboard text=credential label="Copy" class="col-md-6 btn-clipboard"}}
+                </li>
+            {{/each-in}}
+            </ul>
+        </div>
+    {{/each-in}}
+    </section>
 {{/each-in}}
